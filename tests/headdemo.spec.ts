@@ -36,19 +36,28 @@
 
 
 
-import {test,expect}from '@playwright/test'
+import { test, expect } from '@playwright/test';
 
-test('Head Request', async({request})=>{
+test('Head Request - Validate metadata without body', async ({ request }) => {
+  // Send HTTP HEAD request to fetch headers only
+  const response = await request.head('https://jobs.postmanatwork.com/jobs');
 
-const response = await request.head('https://jobs.postmanatwork.com/jobs');
-console.log(response);
-console.log(response.status());
-console.log(response.statusText());
-console.log(response.headers()['content-type']);
-console.log(response.headers()['server']);
-console.log(await response.text());
+  // Assert HTTP status code and status text
+  expect(response.status()).toBe(200);
+  expect(response.statusText()).toBe('OK');
+  expect(response.ok()).toBeTruthy();
+
+  // Inspect and assert specific response headers
+  const headers = response.headers();
+  console.log('Content-Type:', headers['content-type']);
+  console.log('Server:', headers['server']);
+
+  expect(headers['content-type']).toContain('application/json');
+
+  // Assert response body is completely empty for a HEAD request
+  const bodyText = await response.text();
+  console.log('Body Text:', bodyText); // Should print empty string ""
+  expect(bodyText).toBe('');
+});
 
 
-
-
-})
