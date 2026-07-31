@@ -4,7 +4,7 @@ What is query parameter?
 A query parameter is used to filter the response data in an API  request.
 */
 
-
+//
 
 
 import {test,expect} from '@playwright/test'
