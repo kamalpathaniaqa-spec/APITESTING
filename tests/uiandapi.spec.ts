@@ -11,7 +11,7 @@
 
   import { test, expect}from '@playwright/test';
 
-   const API_BASE_URL = 'https://api.github.com'
+   const API_BASE_URL = 'https://api.github.com';
    const GITHUB_USERNAME = 'kamalpathaniaqa-spec';
    const UI_BASE_URL = 'https://github.com/kamalpathaniaqa-spec?tab=repositories';
    const REPONAME = `UIPLUSAPI-${Date.now()}`; // Unique name to prevent duplicate creation errors
